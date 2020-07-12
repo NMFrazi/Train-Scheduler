@@ -3,13 +3,90 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Train Scheduler</title>
+    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-analytics.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="styling.css" />
   </head>
+
   <body>
-    var firebaseConfig = { apiKey: "api-key", authDomain:
-    "project-id.firebaseapp.com", databaseURL:
-    "https://project-id.firebaseio.com", projectId: "project-id", storageBucket:
-    "project-id.appspot.com", messagingSenderId: "sender-id", appId: "app-id",
-    measurementId: "", };
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">Train Scheduler</h1>
+        <p class="lead"></p>
+      </div>
+    </div>
+    <div class="card currentTrainSchedule">
+      <div class="card-header">Train Schedule</div>
+      <div class="card-body">
+        <table>
+          <thead>
+            <tr>
+              <th>Train Name</th>
+              <th>Destination</th>
+              <th>Next Arrival</th>
+              <th>Minutes Away</th>
+              <th>Frequency (min)</th>
+            </tr>
+          </thead>
+          <tbody id="trainData"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card currentTrainSchedule">
+      <div class="card-header">Train</div>
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <label>Train Name</label>
+            <input type="text" class="form-control" id="newTrainName" />
+          </div>
+          <div class="form-group">
+            <label>Destination</label>
+            <input type="text" class="form-control" id="newDestination" />
+          </div>
+          <div class="form-group">
+            <label>Train Time</label>
+            <input type="text" class="form-control" id="newFirstTrainTime" />
+          </div>
+          <div class="form-group">
+            <label>Frequency</label>
+            <input type="text" class="form-control" id="newTrainFrequency" />
+          </div>
+          <button class="btn btn-primary" id="submitButton">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCB7qVEJAW1rBeu5AnpZ1nZR-ifBPpWmwM",
+        authDomain: "train-schedule-3b7f4.firebaseapp.com",
+        databaseURL: "https://train-schedule-3b7f4.firebaseio.com",
+        projectId: "train-schedule-3b7f4",
+        storageBucket: "train-schedule-3b7f4.appspot.com",
+        messagingSenderId: "436693462939",
+        appId: "1:436693462939:web:e7315fc1ad7b29f8883b3e",
+        measurementId: "G-H2BSFS3QEB",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+      const db = firebase.firestore();
+      db.settings({ timestampsInSnapshots: true });
+    </script>
+    <script src="=app.js"></script>
   </body>
 </html>
